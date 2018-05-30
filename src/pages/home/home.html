@@ -1,14 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Ionic File Navigation
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <ion-searchbar (ionInput)="searchFn($event)"></ion-searchbar>
+
+  <button ion-button full (click)="goUp()">
+    Go up
+  </button>
+
+  <div *ngFor="let item of items | search: searchTerm">
+
+    <div *ngIf="item.isDirectory"  class="folder" (click)="goDown(item)">
+      Directory: {{item.name}}
+    </div>
+
+    <div *ngIf="item.isFile" (click)="fileOperation($event,item)" class ="file">
+      File: {{item.name}}
+    </div>
+
+  </div>
+
+  <div *ngIf="noFile">
+    Folder is empty !
+  </div>
+
 </ion-content>

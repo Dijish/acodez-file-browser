@@ -7,10 +7,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { File } from '@ionic-native/file';
+
+import{OperationPopoverPage } from '../pages/operation-popover/operation-popover';
+import { SearchPipe } from '../pipes/search/search';
+
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    OperationPopoverPage,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -19,9 +26,12 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    OperationPopoverPage
   ],
   providers: [
+    SearchPipe,
+    File,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
